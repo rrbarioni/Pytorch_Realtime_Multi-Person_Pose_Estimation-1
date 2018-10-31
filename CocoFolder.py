@@ -36,14 +36,15 @@ def read_json_file(file_dir):
     scales = []
 
     for info in data:
+        print(info)
         kpt = []
         center = []
         scale = []
         lists = info['info']
         for x in lists:
-           kpt.append(x['keypoints'])
-           center.append(x['pos'])
-           scale.append(x['scale'])
+            kpt.append(x['keypoints'])
+            center.append(x['pos'])
+            scale.append(x['scale'])
         kpts.append(kpt)
         centers.append(center)
         scales.append(scale)

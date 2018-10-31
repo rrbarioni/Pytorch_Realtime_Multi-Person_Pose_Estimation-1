@@ -9,10 +9,11 @@ import time
 sys.path.append('..')
 import CocoFolder
 import Mytransforms 
-from utils import adjust_learning_rate as adjust_learning_rate
-from utils import AverageMeter as AverageMeter
-from utils import save_checkpoint as save_checkpoint
-from utils import Config as Config
+from pose_utils import adjust_learning_rate as adjust_learning_rate
+from pose_utils import AverageMeter as AverageMeter
+from pose_utils import save_checkpoint as save_checkpoint
+from pose_utils import Config as Config
+# import pose_utils
 import pose_estimation
 
 def parse():
@@ -180,7 +181,7 @@ def train_val(model, args):
                 for cnt in range(0,12,2):
                     print('Loss{0}_1 = {loss1.val:.8f} (ave = {loss1.avg:.8f})\t'
                         'Loss{1}_2 = {loss2.val:.8f} (ave = {loss2.avg:.8f})'.format(cnt / 2 + 1, cnt / 2 + 1, loss1=losses_list[cnt], loss2=losses_list[cnt + 1]))
-                print time.strftime('%Y-%m-%d %H:%M:%S -----------------------------------------------------------------------------------------------------------------\n', time.localtime())
+                # print time.strftime('%Y-%m-%d %H:%M:%S -----------------------------------------------------------------------------------------------------------------\n', time.localtime())
 
                 batch_time.reset()
                 data_time.reset()
@@ -237,7 +238,7 @@ def train_val(model, args):
                 for cnt in range(0,12,2):
                     print('Loss{0}_1 = {loss1.val:.8f} (ave = {loss1.avg:.8f})\t'
                         'Loss{1}_2 = {loss2.val:.8f} (ave = {loss2.avg:.8f})'.format(cnt / 2 + 1, cnt / 2 + 1, loss1=losses_list[cnt], loss2=losses_list[cnt + 1]))
-                print time.strftime('%Y-%m-%d %H:%M:%S -----------------------------------------------------------------------------------------------------------------\n', time.localtime())
+                # print time.strftime('%Y-%m-%d %H:%M:%S -----------------------------------------------------------------------------------------------------------------\n', time.localtime())
     
                 batch_time.reset()
                 losses.reset()
@@ -252,7 +253,7 @@ def train_val(model, args):
 
 if __name__ == '__main__':
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = '2,3'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
     args = parse()
     model = construct_model(args)
     train_val(model, args)
